@@ -2,26 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: "Poppins", sans-serif;
+}
+
+@layer utilities {
+  .flexBetween {
+    @apply flex items-center justify-between;
+  }
+  .max-container {
+    @apply mx-auto max-w-[1440px];
+  }
+  .padding-container {
+    @apply px-6 lg:px-20 3xl:px-0;
+  }
+  .regular-16 {
+    @apply text-[16px] font-[400];
+  }
+  .regular-20 {
+    @apply text-[20px] font-[400];
+  }
+  .flexCenter {
+    @apply flex items-center justify-center;
+  }
+  .btn_dark_green {
+    @apply bg-purple-50 px-6 py-3 text-white transition-all hover:bg-purple-90;
+  }
+  .bold-16 {
+    @apply text-[16px] font-[700];
+  }
+}
+
+.Nav_links {
+  position: relative;
+  text-decoration: none;
+}
+
+.Nav_links::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(160 32 240);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.Nav_links:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  height: 100%;
+  width: 300px;
+  background-color: #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: right 0.3s;
+}
+
+.mobile-menu.open {
+  right: 0;
 }
